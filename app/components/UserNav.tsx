@@ -9,9 +9,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 const UserNav = () => {
+  const session = useSession();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -26,9 +28,11 @@ const UserNav = () => {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Chuks</p>
+            <p className="text-sm font-medium leading-none">
+              {session.data?.user?.name}
+            </p>
             <p className="text-xs text-muted-foreground leading-none">
-              email.com
+              {session.data?.user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
