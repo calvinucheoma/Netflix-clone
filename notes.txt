@@ -10,3 +10,8 @@ USING SUPABASE
 • Next, we set the 'Mode' to 'Session', copy this string and then paste it in a 'DIRECT_URL' variable in our .env file.
   We also change the password in this string to our project password.
 • Finally, in our 'schema.prisma' file, we add 'directUrl = env("DIRECT_URL")' to our 'datasource db' object.
+
+
+WHEN DEPLOYING TO VERCEL
+• When deploying project to Vercel, if prisma was used in the project, make sure to add "postinstall": "prisma generate"
+  to the 'scripts' object in the package.json file, else an error would occur duing deployment.
