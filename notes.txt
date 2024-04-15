@@ -1,0 +1,12 @@
+USING SUPABASE
+• We log into our dashboard on Supabase, create a new project, copy the password we input during creation and save it somewhere.
+• Create a password that contains no numbers and special characters, just lowercase letters to avoid connection errors.
+• Then, when our new project has finished initializing on supabase, we go to 'Project Settings', and go into the 'Database' section.
+• In the 'Database' section, we set 'Mode' to 'Transaction' in our 'Connection string' section, copy this URI and then paste
+  it in our 'DATABASE_URL' variable in our .env file.
+• At the end of this URI string we just copied, we add '?pgbouncer=true&connection_limit=1' after the 'postgres' word
+  on the URI string. We only do this for the URI with 'Mode' set to 'Transaction'.
+• After that, we replace '[YOUR-PASSWORD]' in this copied URL string with the password we copied when creating the project.
+• Next, we set the 'Mode' to 'Session', copy this string and then paste it in a 'DIRECT_URL' variable in our .env file.
+  We also change the password in this string to our project password.
+• Finally, in our 'schema.prisma' file, we add 'directUrl = env("DIRECT_URL")' to our 'datasource db' object.
